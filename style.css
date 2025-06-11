@@ -1,0 +1,117 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-top: 3rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+nav ul{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 15px;
+  border-radius: 20px;
+  gap: 2rem;
+  justify-content: center;
+  width: fit-content;
+  /* margin-right: 3rem; */
+  padding-inline-start: auto;
+}
+nav ul li{
+  list-style: none;
+}
+nav ul li a{
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  /* border: 2px solid red; */
+}
+
+/* to do field */
+.task-field{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  display: none;
+}
+
+.task-field input[type="text"]{
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.task-field input[type="checkbox"]{
+  /* move this checkbox to the start of the input */
+  order: -1;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.task-field i{
+  cursor: pointer;
+  display: none;
+}
+.task-field i:hover{
+  color: red;
+}
+
+/* hidden text */
+.hidden-text{
+  /* display: none; */
+  color: #333;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+
+/* style footer */
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 13px;
+}
+
