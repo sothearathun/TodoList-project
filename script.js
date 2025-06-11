@@ -25,6 +25,13 @@ const doneTasksContainer = document.querySelector(".done-tasks");
 let activeTasks = [];
 let completedTasks = [];
 let isHistoryVisible = false;
+// the use of isHistoryVisible variable
+// 1. when history btn is toggle, the isHistoryVisible changes its value either true or false
+// 2. in the rendertasks function, this variable is used to determine whether to render the completed tasks or not
+// (in rendertasks, it uses to render completed or uncompleted tasks, thus need sth to determine whether to show the tasks or not)
+// 3. also use to update the history btn innerHTML, changing its text content
+
+
 
 // initialize app
 function init(){
@@ -36,6 +43,14 @@ function init(){
   loadTasksFromStorage();
   renderTasks();
 }
+
+// purpose of init function
+// 1. is to set ip the initial state of the application including:
+// - hiding tasks field that is completed
+// - disabling the checkbox is there is no input content initially
+// - loading tasks from localstarage, that is being store from previous session
+// - rendering tasks (see rendertask function purpose)
+
 
 
 // -------------//
@@ -54,6 +69,9 @@ function showTaskField(){
   checkbox.disabled = true;
   hiddenText.style
 }
+// use to add new tasks when u click on the btn
+
+
 
 // -------------//
 // Input Events //
@@ -67,7 +85,7 @@ inputField.addEventListener("input", () => {
   }
 });
 
-// on Enter Key to add tasks
+// on Enter Key to add tasks, make that task an active task
 inputField.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     addTask();
@@ -118,6 +136,17 @@ function addTask(){
   // reset form
   resetTaskField();
 }
+// add task purpose
+// 1. add new task to the application
+// 2. first it gets the task text, if empty it returns and not proceed to the next step
+// 3. if not empty, then it creates a new task object called newTask (with date.now() as id)
+// 4. then it add the new task to activeTasks array
+// 5. save to localstorage using a function
+// 6. rendertasks using a function, here it renders as activeTasks
+// 7. then reset the task field for a new task to be added (using the add btn)
+
+
+
 
 function resetTaskField(){
   inputField.value = "";
@@ -214,6 +243,17 @@ function createTaskElement(task, isCompleted) {
     // Insert before done-tasks container
     container.insertBefore(taskElement, doneTasksContainer);
 }
+// create task element function purpose:
+// 1. create a new div element called taskElement
+// 2. set the class name to either one of the classname, depend on the value of isCompleted parameter
+// 3. style the task element using inline style, then styles the inner element in it
+// 4. create some variable to store element got from the newly styled and added taskElement div
+// 5. if it is an active tasks, deletebtn display block on hover, if checkboxed check it adds to complete task function
+// 6. hover on deletebtn changes colors, and click on deletebtn calls deleteTask function
+// 7. make sure the task element is inserted before the done-tasks container
+
+
+
 
 
 // -------------//
@@ -223,6 +263,7 @@ function createTaskElement(task, isCompleted) {
 function renderTasks(){
   // clear container
   const existingTasks = container.querySelectorAll(".task-item");
+//   task here is its own parameter, not passdown from other function
   existingTasks.forEach((task) => {
     task.remove();
   });
@@ -242,6 +283,14 @@ function renderTasks(){
         });
     }
 }
+// purpose of clearing the container before render
+// 1. lets say we add a task to the container, that means it uses the createtaskelement function, the tasks is created using the new div in the function and stores in the task-item class, then push to the activetask array
+// 2. then the render tasks will take the responsibilty to whether display the task or not
+// 3. if we then add another task, then the same steps is being repeated, the old task is still there, then it will cause duplication,
+// 4. that is why we need to clear the container before render
+
+
+
 
 
 // -------------//
@@ -260,6 +309,14 @@ function completeTask(taskId) {
         renderTasks();
     }
 }
+// purpose of complete task function
+// 1. first it create a variable, that variable is used to find the task id in the activetasks array
+// 2. if it exists, then it creates a variable called task, that variable stores the task found in the activetasks array
+// 3. then it updates teh status of the task
+// 4. then push the task to completedtasks array
+
+// splice in both of these function are important to remove tasks from its corresponding array
+
 
 function deleteTask(taskId, isCompleted) {
     if (isCompleted) {
@@ -337,5 +394,6 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+// the purpose of these two above is to ensure that the application is initilized only when the DOM is fully loaded
 
 
