@@ -4,3 +4,9 @@ build an interactive to-do list application where users can add, remove, and mar
 - delete button to remove tasks
 - save tasks in local storage
 - show history of done tasks
+
+## what i have learned from this
+* variety usages of listner events
+* dynamic relationships between parameters and functions 
+* localstorage usage
+* init function
